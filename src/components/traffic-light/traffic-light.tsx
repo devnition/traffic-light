@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { TrafficLightState } from './traffic-light-state';
 import { TrafficLightColor } from './traffic-light-color';
+import { TrafficLightMode } from './traffic-light-mode';
 
 @Component({
   tag: 'traffic-light',
@@ -9,33 +10,48 @@ import { TrafficLightColor } from './traffic-light-color';
 })
 export class TrafficLight {
   @Prop({ reflect: true }) currentState: TrafficLightState = TrafficLightState.Off;
-  @Prop({ reflect: true }) color: TrafficLightColor = TrafficLightColor.All;
+  @Prop({ reflect: true }) color: TrafficLightColor; // will default to TrafficLightColor.Red
+  @Prop({ reflect: true }) mode: TrafficLightMode;   // will default to TrafficLightMode.ThreeLights
 
   @Watch('currentState')
-  validateName(newValue: TrafficLightState) {
+  validateCustomState(newValue: TrafficLightState) {
     if (!Object.values(TrafficLightState).includes(newValue)) {
       throw new Error('Invalid value for attribute current-state: ' + newValue);
     }
   }
 
+  @Watch('color')
+  validateColor(newValue: TrafficLightColor) {
+    if (!Object.values(TrafficLightColor).includes(newValue)) {
+      throw new Error('Invalid value for attribute color: ' + newValue);
+    }
+  }
+
+  @Watch('mode')
+  validateMode(newValue: TrafficLightMode) {
+    if (!Object.values(TrafficLightMode).includes(newValue)) {
+      throw new Error('Invalid value for attribute mode: ' + newValue);
+    }
+  }
+
   isOn(whichColor: TrafficLightColor) : boolean {
-    return this.currentState == TrafficLightState.On &&
-      (this.color === whichColor || this.color === TrafficLightColor.All);
+    return this.color === whichColor &&
+      (this.currentState === TrafficLightState.On || this.currentState === TrafficLightState.AllOn);
+  }
+
+  classesForColor(whichColor: TrafficLightColor): string {
+    return `light ${whichColor}-light${(this.isOn(whichColor) ? " " + this.lightOnClassName : "")}`;
   }
 
   lightOnClassName: string = "on";
 
   render() {
-    const redOn = this.isOn(TrafficLightColor.Red) ? this.lightOnClassName : '';
-    const yellowOn = this.isOn(TrafficLightColor.Yellow) ? this.lightOnClassName : '';
-    const greenOn = this.isOn(TrafficLightColor.Green) ? this.lightOnClassName : '';
-
     return (
       <Host>
         <div class="wrapper">
-          <div class={"light top-light " + `${redOn}`}></div>
-          <div class={"light middle-light " + `${yellowOn}`}></div>
-          <div class={"light bottom-light " + `${greenOn}`}></div>
+          <div class={this.classesForColor(TrafficLightColor.Red)}></div>
+          <div class={this.classesForColor(TrafficLightColor.Yellow)}></div>
+          <div class={this.classesForColor(TrafficLightColor.Green)}></div>
         </div>
       </Host>
     );
