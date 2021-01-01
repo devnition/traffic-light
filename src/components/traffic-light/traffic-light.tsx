@@ -16,16 +16,21 @@ export class TrafficLight {
     }
   }
 
+  isOn(whichState: TrafficLightState) : boolean {
+    return this.currentState === whichState || this.currentState === TrafficLightState.On;
+  }
+
+  lightOnClassName = "on";
+
   render() {
     return (
       <Host>
         <div class="wrapper">
-          <div class="light top-light on"></div>
-          <div class="light middle-light on"></div>
-          <div class="light bottom-light on"></div>
+          <div class={"light top-light " + `${this.isOn(TrafficLightState.Red) ? this.lightOnClassName : ''}`}></div>
+          <div class={"light middle-light " + `${this.isOn(TrafficLightState.Yellow) ? this.lightOnClassName : ''}`}></div>
+          <div class={"light bottom-light " + `${this.isOn(TrafficLightState.Green) ? this.lightOnClassName : ''}`}></div>
         </div>
       </Host>
     );
   }
-
 }
