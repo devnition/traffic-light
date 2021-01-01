@@ -6,8 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { TrafficLightState } from "./components/traffic-light/traffic-light-state";
+import { TrafficLightColor } from "./components/traffic-light/traffic-light-color";
 export namespace Components {
     interface TrafficLight {
+        "color": TrafficLightColor;
         "currentState": TrafficLightState;
     }
 }
@@ -24,6 +26,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface TrafficLight {
+        "color"?: TrafficLightColor;
         "currentState"?: TrafficLightState;
     }
     interface IntrinsicElements {
