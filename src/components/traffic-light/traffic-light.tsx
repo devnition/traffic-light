@@ -10,7 +10,7 @@ import { TrafficLightMode } from './traffic-light-mode';
 })
 export class TrafficLight {
   @Prop({ reflect: true }) currentState: TrafficLightState = TrafficLightState.Off;
-  @Prop({ reflect: true }) color: TrafficLightColor; // will default to TrafficLightColor.Red
+  @Prop({ reflect: true }) color: TrafficLightColor;
   @Prop({ reflect: true }) mode: TrafficLightMode;   // will default to TrafficLightMode.ThreeLights
 
   @Watch('currentState')
