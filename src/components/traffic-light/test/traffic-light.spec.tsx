@@ -1,5 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { TrafficLight } from '../traffic-light';
+import { TrafficLightColor } from '../traffic-light-color';
 import { TrafficLightState } from '../traffic-light-state';
 
 describe('traffic-light', () => {
@@ -10,7 +11,7 @@ describe('traffic-light', () => {
       html: `<traffic-light></traffic-light>`,
     });
     expect(page.root).toEqualHtml(`
-      <traffic-light current-state="off">
+      <traffic-light current-state="off" color="all">
         <mock:shadow-root>
           <div class="wrapper">
             <div class="light top-light"></div>
@@ -27,48 +28,52 @@ describe('traffic-light', () => {
     
     trafficLight.currentState = TrafficLightState.Off;
 
-    expect(trafficLight.isOn(TrafficLightState.Red)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Yellow)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Green)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Red)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Yellow)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Green)).toBe(false);
   });
 
-  it('should turn all lights on when the current state is on', () => {
+  it('should turn all lights on when the current state is on and the color is all', () => {
     const trafficLight = new TrafficLight();
     
     trafficLight.currentState = TrafficLightState.On;
+    trafficLight.color = TrafficLightColor.All;
 
-    expect(trafficLight.isOn(TrafficLightState.Red)).toBe(true);
-    expect(trafficLight.isOn(TrafficLightState.Yellow)).toBe(true);
-    expect(trafficLight.isOn(TrafficLightState.Green)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Red)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Yellow)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Green)).toBe(true);
   });
 
-  it('should turn on the red light when the current state is red', () => {
+  it('should turn on the red light when the color is red and the state is on', () => {
     const trafficLight = new TrafficLight();
     
-    trafficLight.currentState = TrafficLightState.Red;
+    trafficLight.currentState = TrafficLightState.On;
+    trafficLight.color = TrafficLightColor.Red;
 
-    expect(trafficLight.isOn(TrafficLightState.Red)).toBe(true);
-    expect(trafficLight.isOn(TrafficLightState.Yellow)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Green)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Red)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Yellow)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Green)).toBe(false);
   });
 
-  it('should turn on the yellow light when the current state is red', () => {
+  it('should turn on the yellow light when the color is yellow and the state is on', () => {
     const trafficLight = new TrafficLight();
     
-    trafficLight.currentState = TrafficLightState.Yellow;
+    trafficLight.currentState = TrafficLightState.On;
+    trafficLight.color = TrafficLightColor.Yellow;
 
-    expect(trafficLight.isOn(TrafficLightState.Red)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Yellow)).toBe(true);
-    expect(trafficLight.isOn(TrafficLightState.Green)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Red)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Yellow)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Green)).toBe(false);
   });
 
-  it('should turn on the green light when the current state is red', () => {
+  it('should turn on the green light when the color is green and the state is on', () => {
     const trafficLight = new TrafficLight();
     
-    trafficLight.currentState = TrafficLightState.Green;
+    trafficLight.currentState = TrafficLightState.On;
+    trafficLight.color = TrafficLightColor.Green;
 
-    expect(trafficLight.isOn(TrafficLightState.Red)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Yellow)).toBe(false);
-    expect(trafficLight.isOn(TrafficLightState.Green)).toBe(true);
+    expect(trafficLight.isOn(TrafficLightColor.Red)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Yellow)).toBe(false);
+    expect(trafficLight.isOn(TrafficLightColor.Green)).toBe(true);
   });
 });

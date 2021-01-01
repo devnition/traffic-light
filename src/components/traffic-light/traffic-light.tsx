@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { TrafficLightState } from './traffic-light-state';
+import { TrafficLightColor } from './traffic-light-color';
 
 @Component({
   tag: 'traffic-light',
@@ -8,6 +9,7 @@ import { TrafficLightState } from './traffic-light-state';
 })
 export class TrafficLight {
   @Prop({ reflect: true }) currentState: TrafficLightState = TrafficLightState.Off;
+  @Prop({ reflect: true }) color: TrafficLightColor = TrafficLightColor.All;
 
   @Watch('currentState')
   validateName(newValue: TrafficLightState) {
@@ -16,19 +18,24 @@ export class TrafficLight {
     }
   }
 
-  isOn(whichState: TrafficLightState) : boolean {
-    return this.currentState === whichState || this.currentState === TrafficLightState.On;
+  isOn(whichColor: TrafficLightColor) : boolean {
+    return this.currentState == TrafficLightState.On &&
+      (this.color === whichColor || this.color === TrafficLightColor.All);
   }
 
-  lightOnClassName = "on";
+  lightOnClassName: string = "on";
 
   render() {
+    const redOn = this.isOn(TrafficLightColor.Red) ? this.lightOnClassName : '';
+    const yellowOn = this.isOn(TrafficLightColor.Yellow) ? this.lightOnClassName : '';
+    const greenOn = this.isOn(TrafficLightColor.Green) ? this.lightOnClassName : '';
+
     return (
       <Host>
         <div class="wrapper">
-          <div class={"light top-light " + `${this.isOn(TrafficLightState.Red) ? this.lightOnClassName : ''}`}></div>
-          <div class={"light middle-light " + `${this.isOn(TrafficLightState.Yellow) ? this.lightOnClassName : ''}`}></div>
-          <div class={"light bottom-light " + `${this.isOn(TrafficLightState.Green) ? this.lightOnClassName : ''}`}></div>
+          <div class={"light top-light " + `${redOn}`}></div>
+          <div class={"light middle-light " + `${yellowOn}`}></div>
+          <div class={"light bottom-light " + `${greenOn}`}></div>
         </div>
       </Host>
     );
