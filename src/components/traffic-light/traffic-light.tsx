@@ -35,8 +35,8 @@ export class TrafficLight {
   }
 
   isOn(whichColor: TrafficLightColor) : boolean {
-    return this.color === whichColor &&
-      (this.currentState === TrafficLightState.On || this.currentState === TrafficLightState.AllOn);
+    return this.currentState === TrafficLightState.AllOn ||
+      (this.currentState === TrafficLightState.On && this.color === whichColor);
   }
 
   classesForColor(whichColor: TrafficLightColor): string {
