@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop, Watch } from '@stencil/core';
+import { TrafficLightState } from './traffic-light-state';
 
 @Component({
   tag: 'traffic-light',
@@ -6,6 +7,14 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class TrafficLight {
+  @Prop({ reflect: true }) currentState: TrafficLightState = TrafficLightState.Off;
+
+  @Watch('currentState')
+  validateName(newValue: TrafficLightState) {
+    if (!Object.values(TrafficLightState).includes(newValue)) {
+      throw new Error('Invalid value for attribute current-state: ' + newValue);
+    }
+  }
 
   render() {
     return (

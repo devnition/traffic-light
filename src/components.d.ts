@@ -5,8 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { TrafficLightState } from "./components/traffic-light/traffic-light-state";
 export namespace Components {
     interface TrafficLight {
+        "currentState": TrafficLightState;
     }
 }
 declare global {
@@ -22,6 +24,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface TrafficLight {
+        "currentState"?: TrafficLightState;
     }
     interface IntrinsicElements {
         "traffic-light": TrafficLight;
