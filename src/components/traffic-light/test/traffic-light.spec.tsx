@@ -61,6 +61,7 @@ describe('traffic-light', () => {
 
   runRedLightTests(TrafficLightState.On, TrafficLightMode.SingleLight);
   runRedLightTests(TrafficLightState.On, TrafficLightMode.ThreeLights);
+  runRedLightTests(TrafficLightState.AllOn, TrafficLightMode.SingleLight);
 
   function runYellowLightTests(currentState: TrafficLightState, mode: TrafficLightMode) {
     it(`should turn on the yellow light in ${mode} mode when the color is yellow and the state is ${currentState}`, () => {
@@ -78,6 +79,7 @@ describe('traffic-light', () => {
 
   runYellowLightTests(TrafficLightState.On, TrafficLightMode.SingleLight);
   runYellowLightTests(TrafficLightState.On, TrafficLightMode.ThreeLights);
+  runYellowLightTests(TrafficLightState.AllOn, TrafficLightMode.SingleLight);
 
   function runGreenLightTests(currentState: TrafficLightState, mode: TrafficLightMode) {
     it(`should turn on the green light in ${mode} mode when the color is green and the state is ${currentState}`, () => {
@@ -95,6 +97,7 @@ describe('traffic-light', () => {
 
   runGreenLightTests(TrafficLightState.On, TrafficLightMode.SingleLight);
   runGreenLightTests(TrafficLightState.On, TrafficLightMode.ThreeLights);
+  runGreenLightTests(TrafficLightState.AllOn, TrafficLightMode.SingleLight);
 
   function runThreeLightsModeAllLightsOnTests(color: TrafficLightColor) {
     it(`should turn all lights on in three lights mode when current state is all-on and color is ${color}`, () => {
