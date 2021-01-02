@@ -22,25 +22,29 @@ export class TrafficLight {
 
   @Watch('color')
   validateColor(newValue: TrafficLightColor) {
-    if (!Object.values(TrafficLightColor).includes(newValue)) {
+    if (((newValue ?? null) !== null) && !Object.values(TrafficLightColor).includes(newValue)) {
       throw new Error('Invalid value for attribute color: ' + newValue);
     }
   }
 
   @Watch('mode')
   validateMode(newValue: TrafficLightMode) {
-    if (!Object.values(TrafficLightMode).includes(newValue)) {
+    if (((newValue ?? null) !== null) && !Object.values(TrafficLightMode).includes(newValue)) {
       throw new Error('Invalid value for attribute mode: ' + newValue);
     }
   }
 
   isOn(whichColor: TrafficLightColor) : boolean {
     return this.currentState === TrafficLightState.AllOn ||
-      (this.currentState === TrafficLightState.On && this.color === whichColor);
+      (this.currentState === TrafficLightState.On && this.color === whichColor && (whichColor ?? null) !== null);
   }
 
-  classesForColor(whichColor: TrafficLightColor): string {
-    return `light ${whichColor}-light${(this.isOn(whichColor) ? " " + this.lightOnClassName : "")}`;
+  getClassesForColor(whichColor: TrafficLightColor): string {
+    return [
+      "light",
+      whichColor ? `${whichColor}-light` : "",
+      this.isOn(whichColor) ? ` ${this.lightOnClassName}` : "",
+    ].join(" ");
   }
 
   lightOnClassName: string = "on";
@@ -49,9 +53,13 @@ export class TrafficLight {
     return (
       <Host>
         <div class="wrapper">
-          <div class={this.classesForColor(TrafficLightColor.Red)}></div>
-          <div class={this.classesForColor(TrafficLightColor.Yellow)}></div>
-          <div class={this.classesForColor(TrafficLightColor.Green)}></div>
+          {this.mode === TrafficLightMode.SingleLight
+            ? <div class={this.getClassesForColor(this.color)}></div>
+            : [
+              <div class={this.getClassesForColor(TrafficLightColor.Red)}></div>,
+              <div class={this.getClassesForColor(TrafficLightColor.Yellow)}></div>,
+              <div class={this.getClassesForColor(TrafficLightColor.Green)}></div>
+            ]}
         </div>
       </Host>
     );
