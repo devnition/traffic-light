@@ -35,8 +35,20 @@ export class TrafficLight {
   }
 
   isOn(whichColor: TrafficLightColor) : boolean {
-    return this.currentState === TrafficLightState.AllOn ||
-      (this.currentState === TrafficLightState.On && this.color === whichColor && (whichColor ?? null) !== null);
+    const hasDefinedColor = (whichColor ?? null) !== null;
+    const askedForDefinedColor = this.color === whichColor;
+
+    switch (this.currentState) {
+      case TrafficLightState.On:
+        return hasDefinedColor && askedForDefinedColor;
+      case TrafficLightState.AllOn:
+        if (this.mode === TrafficLightMode.SingleLight) {
+          return hasDefinedColor && askedForDefinedColor;
+        }
+        return true; // Three lights mode
+      default:
+        return false;
+    }
   }
 
   getClassesForColor(whichColor: TrafficLightColor): string {

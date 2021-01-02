@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                            | Default                 |
-| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| `color`        | `color`         |             | `TrafficLightColor.All \| TrafficLightColor.Green \| TrafficLightColor.Red \| TrafficLightColor.Yellow`                         | `TrafficLightColor.All` |
-| `currentState` | `current-state` |             | `TrafficLightState.Green \| TrafficLightState.Off \| TrafficLightState.On \| TrafficLightState.Red \| TrafficLightState.Yellow` | `TrafficLightState.Off` |
+| Property       | Attribute       | Description | Type                                                                           | Default                 |
+| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------ | ----------------------- |
+| `color`        | `color`         |             | `TrafficLightColor.Green \| TrafficLightColor.Red \| TrafficLightColor.Yellow` | `undefined`             |
+| `currentState` | `current-state` |             | `TrafficLightState.AllOn \| TrafficLightState.Off \| TrafficLightState.On`     | `TrafficLightState.Off` |
+| `mode`         | `mode`          |             | `TrafficLightMode.SingleLight \| TrafficLightMode.ThreeLights`                 | `undefined`             |
 
 
 ----------------------------------------------
