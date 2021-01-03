@@ -1,15 +1,18 @@
 :host {
   display: block;
+}
+
+.traffic-light {
+  position: relative;
   background: rgb(99, 105, 120);
   background: linear-gradient(90deg, rgba(99, 105, 120, 1) 0%, rgba(65, 73, 82, 1) 100%);
   width: 100%;
   height: 0;
   padding-bottom: 245%;
   border-radius: 4px;
-  position: relative;
 }
 
-:host([mode='single-light']) {
+:host([mode='single-light']) .traffic-light {
   padding-bottom: 100%;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);

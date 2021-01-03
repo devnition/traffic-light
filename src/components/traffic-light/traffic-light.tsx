@@ -64,14 +64,16 @@ export class TrafficLight {
   render() {
     return (
       <Host>
-        <div class="wrapper">
-          {this.mode === TrafficLightMode.SingleLight
-            ? <div class={this.getClassesForColor(this.color)}></div>
-            : [
-              <div class={this.getClassesForColor(TrafficLightColor.Red)}></div>,
-              <div class={this.getClassesForColor(TrafficLightColor.Yellow)}></div>,
-              <div class={this.getClassesForColor(TrafficLightColor.Green)}></div>
-            ]}
+        <div class="traffic-light">
+          <div class="wrapper">
+            {this.mode === TrafficLightMode.SingleLight
+              ? <div class={this.getClassesForColor(this.color)}></div>
+              : [
+                <div class={this.getClassesForColor(TrafficLightColor.Red)}></div>,
+                <div class={this.getClassesForColor(TrafficLightColor.Yellow)}></div>,
+                <div class={this.getClassesForColor(TrafficLightColor.Green)}></div>
+              ]}
+          </div>
         </div>
       </Host>
     );
