@@ -1,7 +1,7 @@
 {
-  "name": "traffic-light",
+  "name": "@devnition/traffic-light",
   "version": "1.0.0",
-  "description": "Traffic Light Web Component",
+  "description": "Web Component for displaying status in the form of a traffic light",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
