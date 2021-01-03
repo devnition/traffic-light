@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'semaphore',
+  namespace: 'traffic-light',
   outputTargets: [
     {
       type: 'dist',
