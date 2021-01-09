@@ -1,7 +1,12 @@
 {
-  "name": "@devnition/traffic-light",
+  "name": "web-traffic-light",
   "version": "1.0.0",
   "description": "Web Component for displaying status in the form of a traffic light",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigolira/traffic-light"
+  },
+  "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -24,7 +29,6 @@
   "dependencies": {
     "@stencil/core": "^2.0.1"
   },
-  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "@types/puppeteer": "^5.4.0",
