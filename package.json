@@ -1,7 +1,7 @@
 {
   "name": "web-traffic-light",
-  "version": "1.0.1",
-  "description": "Web Component for displaying status in the form of a traffic light",
+  "version": "1.0.2",
+  "description": "A Javascript Web Component for displaying status in the form of a traffic light on web applications.",
   "repository": {
     "type": "git",
     "url": "https://github.com/rodrigolira/traffic-light"
