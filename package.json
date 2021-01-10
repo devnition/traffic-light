@@ -1,6 +1,6 @@
 {
   "name": "web-traffic-light",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web Component for displaying status in the form of a traffic light",
   "repository": {
     "type": "git",
