@@ -10,7 +10,7 @@ A Javascript Web Component for displaying status in the form of a traffic light 
 
 ## Online demo
 
-[Click here for the demo (On CodePen.io)](https://codepen.io/rodrigolira/pen/KKgBOWa)
+[Click here for the demo (On CodePen.io)](https://codepen.io/rodrigolira/full/KKgBOWa)
 
 ## Installing
 
